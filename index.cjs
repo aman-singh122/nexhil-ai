@@ -1,4 +1,4 @@
-// index.js
+// index.cjs
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -133,7 +133,7 @@ Respond ONLY in this format:
           console.log("AI raw response:", response.text);
           let aiText = response.text.trim();
           // Remove code block markers if present
-          if (aiText.startsWith("```")) {
+          if (aiText.startsWith("```") ) {
             aiText = aiText
               .replace(/^```(?:json)?/i, "")
               .replace(/```$/, "")
