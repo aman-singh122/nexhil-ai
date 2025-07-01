@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexhil AI - AI Website Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #0d0d0d;
+        color: #e2e8f0;
+        overflow: hidden;
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 1;
+      }
+
+      body.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        background: #0a0a1a;
+        position: relative;
+      }
+
+      .left-pane,
+      .right-pane {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        min-height: 0;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .left-pane {
+        background: transparent;
+        z-index: 2;
+      }
+
+      .right-pane {
+        background: transparent;
+        z-index: 2;
+        align-items: flex-start;
+        max-width: 370px;
+        width: 100%;
+        min-width: 0;
+        margin-right: 2vw;
+      }
+
+      .hero-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #38bdf8;
+        margin-bottom: 1rem;
+      }
+
+      .hero-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #38bdf8, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.2rem;
+        letter-spacing: 0.02em;
+      }
+
+      .hero-desc {
+        font-size: 1.2rem;
+        color: #cbd5e1;
+        text-align: center;
+        max-width: 320px;
+      }
+
+      .cta-btn {
+        margin-top: 2.2rem;
+        background: linear-gradient(90deg, #38bdf8 30%, #a78bfa 100%);
+        color: #fff;
+        padding: 1.2rem 3.2rem;
+        font-size: 1.35rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 6px 24px rgba(56, 189, 248, 0.25);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.2s;
+        letter-spacing: 0.01em;
+      }
+
+      .cta-btn:hover {
+        background: linear-gradient(90deg, #a78bfa 10%, #38bdf8 90%);
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 12px 32px rgba(56, 189, 248, 0.35);
+      }
+
+      .info-box {
+        background: rgba(24, 24, 40, 0.85);
+        border: 1.5px solid #38bdf8;
+        border-radius: 1.2rem;
+        padding: 1.1rem 1.2rem;
+        color: #cbd5e1;
+        box-shadow: 0 0 18px rgba(56, 189, 248, 0.1);
+        margin-bottom: 0.8rem;
+        width: 100%;
+        max-width: 340px;
+        min-width: 0;
+        font-size: 0.98rem;
+      }
+
+      .info-box h2 {
+        font-size: 1.1rem;
+        color: #38bdf8;
+        margin-bottom: 0.5rem;
+      }
+
+      .stats-boxes {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 340px;
+        min-width: 0;
+      }
+
+      .stat-box {
+        flex: 1 1 120px;
+        min-width: 80px;
+        max-width: 120px;
+        background: rgba(56, 189, 248, 0.07);
+        border: 1.2px solid #a78bfa;
+        border-radius: 0.8rem;
+        padding: 0.7rem 0.3rem;
+        text-align: center;
+        color: #a5b4fc;
+        font-weight: 600;
+        font-size: 0.93rem;
+      }
+
+      .stat-box h3 {
+        font-size: 1.1rem;
+        color: #38bdf8;
+        margin-bottom: 0.1rem;
+      }
+
+      .stat-box p {
+        font-size: 0.85rem;
+        color: #cbd5e1;
+      }
+
+      .footer {
+        position: fixed;
+        left: 2.5vw;
+        bottom: 1.5rem;
+        width: auto;
+        text-align: left;
+        color: #a5b4fc;
+        font-size: 1.1rem;
+        letter-spacing: 0.01em;
+        z-index: 10;
+      }
+
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .left-pane,
+        .right-pane {
+          max-width: 100vw;
+          width: 100vw;
+        }
+
+        .right-pane {
+          align-items: center;
+          margin-right: 0;
+        }
+        .info-box,
+        .stats-boxes {
+          max-width: 95vw;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          flex-direction: column;
+          height: auto;
+          min-height: 100vh;
+          padding: 0;
+        }
+        .left-pane, .right-pane {
+          max-width: 100vw;
+          width: 100vw;
+          align-items: center;
+          padding: 1.2rem 0.3rem;
+        }
+        .right-pane {
+          margin-right: 0;
+          align-items: center;
+        }
+        .hero-title {
+          font-size: 1.5rem;
+        }
+        .hero-logo {
+          width: 48px;
+          height: 48px;
+        }
+        .cta-btn {
+          font-size: 0.95rem;
+          padding: 0.7rem 1.2rem;
+        }
+        .info-box, .stats-boxes {
+          max-width: 99vw;
+          font-size: 0.93rem;
+          padding: 0.7rem 0.3rem;
+        }
+        .stat-box {
+          min-width: 60px;
+          max-width: 80px;
+          font-size: 0.8rem;
+        }
+        .footer {
+          font-size: 0.85rem;
+          left: 1vw;
+          bottom: 0.7rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .info-box,
+        .stats-boxes {
+          max-width: 99vw;
+        }
+        .stat-box {
+          min-width: 70px;
+          max-width: 90px;
+          font-size: 0.85rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 0;
+        }
+        .left-pane, .right-pane {
+          padding: 0.7rem 0.1rem;
+        }
+        .hero-title {
+          font-size: 1.1rem;
+        }
+        .hero-desc {
+          font-size: 0.93rem;
+          max-width: 95vw;
+        }
+        .cta-btn {
+          font-size: 0.8rem;
+          padding: 0.5rem 0.7rem;
+        }
+        .info-box, .stats-boxes {
+          max-width: 100vw;
+          font-size: 0.8rem;
+          padding: 0.5rem 0.1rem;
+        }
+        .stat-box {
+          min-width: 40px;
+          max-width: 60px;
+          font-size: 0.7rem;
+        }
+        .footer {
+          font-size: 0.7rem;
+          left: 0.5vw;
+        }
+      }
+
+      /* Animated, unique background */
+      .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .animated-bg .circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.18;
+        animation: float 8s infinite alternate ease-in-out;
+      }
+
+      .animated-bg .circle1 {
+        width: 420px;
+        height: 420px;
+        left: -120px;
+        top: 80px;
+        background: radial-gradient(circle, #38bdf8 0%, transparent 80%);
+        animation-delay: 0s;
+      }
+
+      .animated-bg .circle2 {
+        width: 320px;
+        height: 320px;
+        right: -100px;
+        bottom: 120px;
+        background: radial-gradient(circle, #a78bfa 0%, transparent 80%);
+        animation-delay: 2s;
+      }
+
+      .animated-bg .circle3 {
+        width: 180px;
+        height: 180px;
+        left: 60vw;
+        top: 60vh;
+        background: radial-gradient(circle, #06b6d4 0%, transparent 80%);
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+
+        100% {
+          transform: translateY(-40px) scale(1.08);
+        }
+      }
+
+      /* Animated background responsive fix */
+      .animated-bg .circle1 {
+        width: 38vw;
+        height: 38vw;
+        min-width: 90px;
+        min-height: 90px;
+        left: -10vw;
+        top: 8vw;
+      }
+      .animated-bg .circle2 {
+        width: 28vw;
+        height: 28vw;
+        min-width: 60px;
+        min-height: 60px;
+        right: -8vw;
+        bottom: 12vw;
+      }
+      .animated-bg .circle3 {
+        width: 15vw;
+        height: 15vw;
+        min-width: 40px;
+        min-height: 40px;
+        left: 60vw;
+        top: 60vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animated-bg">
+      <div class="circle circle1"></div>
+      <div class="circle circle2"></div>
+      <div class="circle circle3"></div>
+    </div>
+    <div class="container">
+      <div class="left-pane">
+        <img src="profile3.jpg" alt="Nexhil Logo" class="hero-logo" />
+        <div class="hero-title">Nexhil AI</div>
+        <div class="hero-desc">
+          Welcome to Nexhil AI — Generate powerful websites using AI. Just write
+          your idea and we build it for you. No code needed!
+        </div>
+        <button class="cta-btn" id="tryNowBtn">
+          <i class="fas fa-rocket"></i> Start Generating -
+          <span class="tooltip">Click to generate your website</span>
+        </button>
+      </div>
+      <div class="right-pane">
+        <div class="info-box">
+          <h2>What Nexhil AI Can Do</h2>
+          <p>
+            Nexhil AI turns your ideas into full websites with clean HTML, CSS,
+            and JS. No setup. No coding. Just pure creativity + AI magic.
+          </p>
+        </div>
+        <div class="info-box">
+          <h2>Why Choose Nexhil?</h2>
+          <p>
+            Quick, modern, and responsive web design built instantly from your
+            prompts. Save time, impress users, and export your site in one
+            click.
+          </p>
+        </div>
+        <div class="info-box stats-boxes">
+          <div class="stat-box">
+            <h3>1,000+</h3>
+            <p>Daily Users</p>
+          </div>
+          <div class="stat-box">
+            <h3>50K+</h3>
+            <p>Websites Built</p>
+          </div>
+          <div class="stat-box">
+            <h3>24/7</h3>
+            <p>Live Access</p>
+          </div>
+          <div class="stat-box">
+            <h3>0</h3>
+            <p>Lines of Code Needed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      &copy; 2025 Nexhil AI — Developed by Aman Singh (Nikhil)
+    </div>
+    <script>
+      document
+        .getElementById("tryNowBtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(function () {
+            window.location.href = "index.html";
+          }, 650);
+        });
+    </script>
+  </body>
+</html>

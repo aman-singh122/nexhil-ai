@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudAI Studio - AI Website Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary: #8b5cf6;
+        --accent: #06b6d4;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --dark-bg: #0f172a;
+        --dark-surface: #1e293b;
+        --dark-card: #334155;
+        --dark-text: #f1f5f9;
+        --dark-text-secondary: #cbd5e1;
+        --light-bg: #ffffff;
+        --light-surface: #f8fafc;
+        --light-card: #ffffff;
+        --light-text: #1e293b;
+        --light-text-secondary: #64748b;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --backdrop-blur: blur(20px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      html,
+      body {
+        height: 100vh;
+      }
+      .app-container {
+        display: flex;
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background: var(--glass-bg);
+        backdrop-filter: var(--backdrop-blur);
+        border-right: 1px solid var(--glass-border);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .sidebar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.1),
+          rgba(139, 92, 246, 0.1)
+        );
+        z-index: -1;
+      }
+
+      .sidebar-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .logo img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary);
+        margin-right: 0.5rem;
+      }
+
+      .model-selector {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .model-selector h3 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        opacity: 0.8;
+      }
+
+      .model-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .model-option {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+      }
+
+      .model-option:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: var(--primary);
+      }
+
+      .model-option.active {
+        background: rgba(59, 130, 246, 0.2);
+        border-color: var(--primary);
+      }
+
+      .model-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      .gpt {
+        background: linear-gradient(135deg, #10a37f, #1a7f64);
+      }
+      .claude {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+      }
+      .gemini {
+        background: linear-gradient(135deg, #4285f4, #34a853);
+      }
+
+      .nav-section {
+        flex: 1;
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .nav-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .nav-item i {
+        width: 20px;
+        text-align: center;
+        opacity: 0.7;
+      }
+
+      .sidebar-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--glass-border);
+      }
+
+      #authSection {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+      }
+
+      .user-details h4 {
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .user-details p {
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: between;
+        padding: 1rem 2rem;
+        background: var(--glass-bg);
+        backdrop-filter: var(--backdrop-blur);
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .top-bar-left h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .top-bar-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: auto;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: var(--glass-bg);
+        backdrop-filter: var(--backdrop-blur);
+        border: 1px solid var(--glass-border);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      /* Content Area */
+      .content-area {
+        flex: 1;
+        display: flex;
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 0;
+        height: 0;
+      }
+
+      .input-panel,
+      .output-panel {
+        background: var(--glass-bg);
+        backdrop-filter: var(--backdrop-blur);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        height: 100%;
+        overflow: auto;
+        margin-bottom: 0;
+      }
+
+      .input-panel {
+        width: 400px;
+        min-width: 320px;
+        max-width: 100vw;
+      }
+
+      .output-panel {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .panel-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .panel-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .panel-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      /* Input Section */
+      .prompt-container {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+
+      .prompt-textarea {
+        width: 100%;
+        min-height: 120px;
+        padding: 1rem;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: var(--backdrop-blur);
+        color: inherit;
+        font-family: inherit;
+        font-size: 0.875rem;
+        resize: vertical;
+        transition: all 0.2s ease;
+      }
+
+      .prompt-textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      .prompt-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .voice-btn {
+        background: linear-gradient(135deg, var(--accent), var(--success));
+        color: white;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .voice-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .voice-btn.recording {
+        animation: pulse 1s infinite;
+        background: linear-gradient(135deg, var(--danger), var(--warning));
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .file-upload {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .file-upload input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .generate-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .generate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+      }
+
+      .generate-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .generate-btn.loading::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: loading-shimmer 1.5s infinite;
+      }
+
+      @keyframes loading-shimmer {
+        to {
+          left: 100%;
+        }
+      }
+
+      /* File Upload Area */
+      .file-drop-area {
+        border: 2px dashed var(--glass-border);
+        border-radius: 0.75rem;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .file-drop-area:hover,
+      .file-drop-area.dragover {
+        border-color: var(--primary);
+        background: rgba(59, 130, 246, 0.05);
+      }
+
+      .uploaded-files {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .file-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid var(--primary);
+        border-radius: 1rem;
+        font-size: 0.75rem;
+      }
+
+      .file-tag button {
+        background: none;
+        border: none;
+        color: var(--danger);
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.875rem;
+      }
+
+      /* History Section */
+      .history-section {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .history-item {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .history-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: var(--primary);
+      }
+
+      .history-item h4 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .history-item p {
+        font-size: 0.75rem;
+        opacity: 0.7;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Output Panel */
+      .output-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .tab {
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+      }
+
+      .tab.active {
+        border-bottom-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .tab:hover:not(.active) {
+        background: rgba(59, 130, 246, 0.05);
+      }
+
+      .tab-content {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .preview-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0.5rem;
+        background: white;
+      }
+
+      .code-editor {
+        width: 100%;
+        height: 100%;
+        background: #1e293b;
+        color: #e2e8f0;
+        font-family: "Fira Code", monospace;
+        font-size: 0.875rem;
+        padding: 1rem;
+        border: none;
+        resize: none;
+        line-height: 1.5;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      /* Loading Animation */
+      .loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .loading-spinner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(59, 130, 246, 0.3);
+        border-top: 3px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        color: white;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .loading-progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(59, 130, 246, 0.3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .loading-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+        width: 0%;
+        animation: progress 3s ease-in-out infinite;
+      }
+
+      @keyframes progress {
+        0%,
+        100% {
+          width: 0%;
+        }
+        50% {
+          width: 80%;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .content-area {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .input-panel {
+          width: 100%;
+          min-width: unset;
+        }
+        .output-panel {
+          min-height: 0;
+        }
+      }
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 250px;
+          transform: translateX(-100%);
+          position: fixed;
+          z-index: 1000;
+          height: 100vh;
+        }
+        .sidebar.open {
+          transform: translateX(0);
+        }
+        .main-content {
+          width: 100%;
+        }
+        .content-area {
+          padding: 1rem;
+        }
+        .top-bar {
+          padding: 1rem;
+        }
+      }
+      /* Modern gradient background for main content */
+      .main-content {
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+      }
+      /* Feedback modal styles */
+      .modal-feedback {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-feedback .modal-content {
+        background: #fff;
+        color: #222;
+        padding: 2rem;
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 90vw;
+        position: relative;
+      }
+      .modal-feedback .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* THEME OVERRIDES */
+      body.dark {
+        background: var(--dark-bg);
+        color: var(--dark-text);
+      }
+      body.dark .main-content {
+        background: var(--dark-bg);
+      }
+      body.dark .sidebar,
+      body.dark .input-panel,
+      body.dark .output-panel,
+      body.dark .panel-content,
+      body.dark .top-bar,
+      body.dark .modal-content {
+        background: var(--dark-surface);
+        color: var(--dark-text);
+        border-color: var(--dark-card);
+      }
+      body.dark .code-editor {
+        background: var(--dark-card);
+        color: var(--dark-text);
+      }
+      body.dark .preview-frame {
+        background: var(--dark-bg);
+      }
+      body.dark .btn-secondary,
+      body.dark .theme-toggle {
+        background: var(--dark-card);
+        color: var(--dark-text);
+        border-color: var(--dark-card);
+      }
+      body.dark .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: #fff;
+      }
+      body.dark .file-drop-area {
+        background: var(--dark-surface);
+        border-color: var(--dark-card);
+        color: var(--dark-text-secondary);
+      }
+      body.dark .history-section {
+        background: var(--dark-surface);
+      }
+      body.dark .modal-feedback .modal-content {
+        background: var(--dark-surface);
+        color: var(--dark-text);
+      }
+
+      body.light {
+        background: var(--light-bg);
+        color: var(--light-text);
+      }
+      body.light .main-content {
+        background: var(--light-bg);
+      }
+      body.light .sidebar,
+      body.light .input-panel,
+      body.light .output-panel,
+      body.light .panel-content,
+      body.light .top-bar,
+      body.light .modal-content {
+        background: var(--light-surface);
+        color: var(--light-text);
+        border-color: var(--light-card);
+      }
+      body.light .code-editor {
+        background: var(--light-card);
+        color: var(--light-text);
+      }
+      body.light .preview-frame {
+        background: var(--light-bg);
+      }
+      body.light .btn-secondary,
+      body.light .theme-toggle {
+        background: var(--light-card);
+        color: var(--light-text);
+        border-color: var(--light-card);
+      }
+      body.light .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: #fff;
+      }
+      body.light .file-drop-area {
+        background: var(--light-surface);
+        border-color: var(--light-card);
+        color: var(--light-text-secondary);
+      }
+      body.light .history-section {
+        background: var(--light-surface);
+      }
+      body.light .modal-feedback .modal-content {
+        background: var(--light-card);
+        color: var(--light-text);
+      }
+
+      /* Settings Modal */
+      .settings-modal-box {
+        background: #181a22;
+        color: #fff;
+        padding: 2rem;
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 90vw;
+        position: relative;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+    </div>
+
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <img
+              src="profile3.jpg"
+              alt="Profile"
+              id="profilePic"
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid var(--primary);
+                margin-right: 0.5rem;
+              "
+            />
+            Nexhil AI
+          </div>
+        </div>
+
+        <div class="model-selector">
+          <h3>AI Model</h3>
+          <div class="model-options">
+            <div class="model-option active" data-model="gpt">
+              <div class="model-icon gpt">GPT</div>
+              <div>
+                <div>GPT-4 Turbo</div>
+                <small style="opacity: 0.7">OpenAI</small>
+              </div>
+            </div>
+            <div class="model-option" data-model="claude">
+              <div class="model-icon claude">C</div>
+              <div>
+                <div>Claude Sonnet 4</div>
+                <small style="opacity: 0.7">Anthropic</small>
+              </div>
+            </div>
+            <div class="model-option" data-model="gemini">
+              <div class="model-icon gemini">G</div>
+              <div>
+                <div>Gemini Pro</div>
+                <small style="opacity: 0.7">Google</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <a href="#" class="nav-item">
+            <i class="fas fa-plus"></i>
+            New Project
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-history"></i>
+            Recent Projects
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-folder"></i>
+            Templates
+          </a>
+          <a href="#" class="nav-item" id="settingsBtn">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="sidebar-footer">
+          <!-- Auth section removed as requested -->
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="top-bar">
+          <div class="top-bar-left">
+            <button
+              class="btn btn-secondary"
+              id="sidebarToggle"
+              style="display: none"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+            <h1>AI Website Generator</h1>
+          </div>
+          <div class="top-bar-right">
+            <div class="status-indicator status-online">
+              <div class="status-dot"></div>
+              Connected
+            </div>
+            <button
+              class="theme-toggle btn btn-secondary"
+              id="themeToggleBtn"
+              title="Toggle theme"
+              style="
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                padding: 0;
+              "
+            >
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="btn btn-primary" id="exportZipBtn" disabled>
+              <i class="fas fa-file-archive"></i>
+              Export ZIP
+            </button>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <!-- Input Panel -->
+          <div class="input-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <i class="fas fa-edit"></i>
+                Project Input
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="prompt-container">
+                <textarea
+                  class="prompt-textarea"
+                  id="promptInput"
+                  placeholder="Describe the website you want to create... Be specific about design, functionality, and features."
+                ></textarea>
+                <div class="prompt-actions">
+                  <button
+                    class="voice-btn"
+                    id="voiceBtn"
+                    title="Voice input"
+                    style="margin-right: 0.5rem"
+                  >
+                    <i class="fas fa-microphone"></i>
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    id="generateBtn"
+                    style="margin-left: auto"
+                  >
+                    <i class="fas fa-magic"></i>
+                    Generate Website
+                  </button>
+                </div>
+                <div
+                  class="file-upload btn btn-secondary"
+                  style="margin-top: 1rem"
+                >
+                  <i class="fas fa-upload"></i>
+                  Upload
+                  <input
+                    type="file"
+                    id="fileInput"
+                    multiple
+                    accept=".txt,.md,.pdf,.doc,.docx"
+                  />
+                </div>
+              </div>
+
+              <div class="file-drop-area" id="fileDropArea">
+                <i
+                  class="fas fa-cloud-upload-alt"
+                  style="font-size: 2rem; opacity: 0.5; margin-bottom: 0.5rem"
+                ></i>
+                <p>Drop files here or click to upload</p>
+                <small style="opacity: 0.7"
+                  >Supports: TXT, MD, PDF, DOC, DOCX</small
+                >
+              </div>
+
+              <div class="uploaded-files" id="uploadedFiles"></div>
+
+              <div style="margin-top: 2rem">
+                <h3
+                  style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem"
+                >
+                  Recent Projects
+                </h3>
+                <div class="history-section" id="historySection">
+                  <!-- History items will be populated here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="output-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <i class="fas fa-code"></i>
+                Generated Output
+              </div>
+              <div class="output-tabs">
+                <div class="tab active" data-tab="preview">
+                  <i class="fas fa-eye"></i>
+                  Preview
+                </div>
+                <div class="tab" data-tab="html">
+                  <i class="fab fa-html5"></i>
+                  HTML
+                </div>
+                <div class="tab" data-tab="css">
+                  <i class="fab fa-css3-alt"></i>
+                  CSS
+                </div>
+                <div class="tab" data-tab="js">
+                  <i class="fab fa-js"></i>
+                  JavaScript
+                </div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="tab-content">
+                <iframe
+                  class="preview-frame"
+                  id="previewFrame"
+                  style="display: block"
+                ></iframe>
+                <textarea
+                  class="code-editor"
+                  id="htmlEditor"
+                  style="display: none"
+                  readonly
+                ></textarea>
+                <textarea
+                  class="code-editor"
+                  id="cssEditor"
+                  style="display: none"
+                  readonly
+                ></textarea>
+                <textarea
+                  class="code-editor"
+                  id="jsEditor"
+                  style="display: none"
+                  readonly
+                ></textarea>
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                >
+                  <button id="openPreviewFullscreen" class="btn btn-secondary">
+                    <i class="fas fa-expand"></i> Fullscreen Preview
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <div class="loading-text">
+          <h3>Your website is generating, just wait a few seconds...</h3>
+          <p id="loadingStatus">Initializing AI model</p>
+        </div>
+        <div class="loading-progress">
+          <div class="loading-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates Modal -->
+    <div
+      id="templatesModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #fff;
+          color: #222;
+          padding: 2rem;
+          border-radius: 1rem;
+          max-width: 400px;
+          width: 90vw;
+          position: relative;
+        "
+      >
+        <button
+          id="closeTemplatesModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 style="margin-bottom: 1rem">Templates</h2>
+        <ul
+          id="templatesList"
+          style="list-style: none; padding: 0; margin: 0"
+        ></ul>
+      </div>
+    </div>
+    <!-- Settings Modal -->
+    <div
+      id="settingsModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #181a22;
+          color: #fff;
+          padding: 2rem;
+          border-radius: 1rem;
+          max-width: 400px;
+          width: 90vw;
+          position: relative;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        "
+      >
+        <button
+          id="closeSettingsModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+          "
+        >
+          &times;
+        </button>
+        <h2 style="margin-bottom: 1rem">Settings</h2>
+        <div id="settingsContent"></div>
+      </div>
+    </div>
+    <!-- About Modal -->
+    <div
+      id="aboutModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #fff;
+          color: #222;
+          padding: 2rem;
+          border-radius: 1rem;
+          max-width: 400px;
+          width: 90vw;
+          position: relative;
+        "
+      >
+        <button
+          id="closeAboutModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 style="margin-bottom: 1rem">About</h2>
+        <div>
+          CloudAI Studio - AI Website Generator<br />Created by Aman Singh<br />For
+          help, contact support@example.com
+        </div>
+      </div>
+    </div>
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal-feedback">
+      <div class="modal-content">
+        <button class="close" id="closeFeedbackModal">&times;</button>
+        <h2>Feedback</h2>
+        <textarea
+          id="feedbackText"
+          class="prompt-textarea"
+          placeholder="Your feedback..."
+          style="height: 80px"
+        ></textarea>
+        <button
+          class="btn btn-primary"
+          id="sendFeedbackBtn"
+          style="margin-top: 1rem"
+        >
+          Send Feedback
+        </button>
+        <div
+          id="feedbackStatus"
+          style="margin-top: 0.5rem; font-size: 0.95rem"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Fullscreen Preview Modal -->
+    <div
+      id="fullscreenPreviewModal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 4000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button
+        id="closeFullscreenPreview"
+        style="
+          position: absolute;
+          top: 2rem;
+          right: 2rem;
+          font-size: 2.5rem;
+          background: none;
+          border: none;
+          color: #fff;
+          z-index: 4100;
+          cursor: pointer;
+        "
+      >
+        &times;
+      </button>
+      <iframe
+        id="fullscreenPreviewFrame"
+        style="
+          width: 90vw;
+          height: 85vh;
+          border-radius: 1rem;
+          border: none;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+          background: #fff;
+        "
+      ></iframe>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
