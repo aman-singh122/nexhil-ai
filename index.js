@@ -6,6 +6,9 @@ import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import { promisify } from "util";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +19,7 @@ app.use(bodyParser.json());
 
 // Gemini API Setup
 const ai = new GoogleGenAI({
-  apiKey: "AIzaSyDclIvm2iuYgxOhMP64LPwP5VtjQUXX6bA", // 🔁 Replace with your actual Gemini API key
+  apiKey: process.env.GEMINI_API_KEY, // 🔁 Now loaded from .env
 });
 
 const writeFileAsync = promisify(fs.writeFile);
@@ -104,12 +107,10 @@ Respond ONLY in this format:
           }
           json = JSON.parse(aiText); // Parse cleaned JSON
         } catch (err) {
-          return res
-            .status(500)
-            .json({
-              error: "AI response is not valid JSON",
-              raw: response.text,
-            });
+          return res.status(500).json({
+            error: "AI response is not valid JSON",
+            raw: response.text,
+          });
         }
 
         // Ensure all keys exist for frontend
