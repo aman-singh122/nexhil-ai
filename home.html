@@ -47,7 +47,7 @@
         min-height: 100vh;
         height: 100vh;
         overflow-x: hidden;
-        overflow-y: hidden;
+        overflow-y: auto; /* Allow vertical scrolling on mobile */
         transition: all 0.3s ease;
         position: relative;
       }
@@ -725,6 +725,12 @@
         }
         .main-content {
           width: 100%;
+          height: auto; /* Fix: allow content to expand on mobile */
+        }
+        .app-container {
+          flex-direction: column;
+          height: auto; /* Fix: allow content to expand on mobile */
+          min-height: unset;
         }
         .content-area {
           padding: 1rem;
