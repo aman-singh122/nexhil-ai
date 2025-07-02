@@ -406,12 +406,12 @@
 
       .prompt-actions {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.2rem;
         margin-top: 0.75rem;
       }
 
       .voice-btn {
-        background: linear-gradient(135deg, var(--accent), var(--success));
+        background: linear-gradient(135deg, #f59e0b, #ef4444);
         color: white;
         padding: 0.5rem;
         border-radius: 0.5rem;
@@ -698,7 +698,10 @@
         }
       }
 
-      /* Responsive Design */
+      /* --- Mobile Top Toolbar --- */
+      .top-toolbar {
+        display: none;
+      }
       @media (max-width: 1024px) {
         .app-container {
           flex-direction: column;
@@ -724,6 +727,8 @@
         }
         .output-panel {
           min-height: 0;
+          width: 100%;
+          max-width: unset;
         }
         .top-bar {
           flex-direction: column;
@@ -734,162 +739,137 @@
         .top-bar-left,
         .top-bar-right {
           width: 100%;
+        }
+        .tab-content,
+        .preview-frame,
+        .code-editor {
+          min-height: 200px;
+          height: auto;
+          max-height: unset;
+          display: block !important;
         }
       }
       @media (max-width: 768px) {
-        .sidebar {
-          width: 90vw;
-          max-width: 340px;
-          transform: translateX(-100%);
-          position: fixed;
-          z-index: 1000;
-          height: 100vh;
-          left: 0;
-          top: 0;
-          background: var(--glass-bg);
-          transition: transform 0.3s ease;
-        }
-        .sidebar.open {
-          transform: translateX(0);
-        }
+        .sidebar,
         .sidebar-toggle-btn {
-          display: block !important;
+          display: none !important;
+        }
+        .top-toolbar {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          gap: 0.5rem;
+          width: 100vw;
+          overflow-x: auto;
+          background: var(--glass-bg);
+          backdrop-filter: var(--backdrop-blur);
+          border-bottom: 1px solid var(--glass-border);
+          padding: 0.5rem 0.5rem 0.5rem 0.7rem;
+          z-index: 1002;
+          position: sticky;
+          top: 0;
+        }
+        .top-toolbar .logo {
+          flex: 0 0 auto;
+          font-size: 1.1rem;
+          padding-right: 0.5rem;
+          align-items: center;
+        }
+        .top-toolbar .model-selector {
+          flex: 0 0 auto;
+          padding: 0 0.5rem 0 0.5rem;
+          border: none;
+        }
+        .top-toolbar .model-options {
+          flex-direction: row;
+          gap: 0.5rem;
+        }
+        .top-toolbar .model-option {
+          padding: 0.5rem 0.7rem;
+          font-size: 0.9rem;
+        }
+        .top-toolbar .nav-section {
+          flex: 0 0 auto;
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+          padding: 0;
+        }
+        .top-toolbar .nav-item {
+          margin-bottom: 0;
+          padding: 0.5rem 0.7rem;
+          font-size: 0.95rem;
         }
         .main-content {
-          width: 100%;
+          width: 100vw;
           height: auto;
           min-height: unset;
-        }
-        .app-container {
+          display: flex;
           flex-direction: column;
-          height: auto;
-          min-height: unset;
+        }
+        .top-bar {
+          order: 2;
+          width: 100vw;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+          padding: 0.75rem 0.5rem 0.5rem 0.7rem;
         }
         .content-area {
-          padding: 0.5rem;
+          order: 3;
           flex-direction: column;
           gap: 0.75rem;
-          height: auto;
-          min-height: unset;
-        }
-        .input-panel,
-        .output-panel {
-          width: 100%;
-          min-width: unset;
-          max-width: unset;
-          height: auto;
-          min-height: unset;
-        }
-        .top-bar {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
-          width: 100%;
-          padding: 0.75rem 0.5rem;
-        }
-        .top-bar-left,
-        .top-bar-right {
-          width: 100%;
-          justify-content: flex-start;
-        }
-      }
-      @media (max-width: 600px) {
-        .sidebar {
+          padding: 0.5rem;
           width: 100vw;
-          max-width: 100vw;
         }
-        .main-content {
-          height: auto;
-          min-height: unset;
-        }
-        .content-area {
-          padding: 0.25rem;
-          gap: 0.5rem;
-          height: auto;
-          min-height: unset;
-        }
-        .input-panel,
         .output-panel {
-          width: 100%;
+          order: 1;
+          width: 100vw;
           min-width: unset;
           max-width: unset;
           height: auto;
           min-height: unset;
         }
-        .top-bar {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.25rem;
-          width: 100%;
-          padding: 0.5rem 0.25rem;
+        .input-panel {
+          order: 2;
+          width: 100vw;
+          min-width: unset;
+          max-width: unset;
+          height: auto;
+          min-height: unset;
         }
-        .top-bar-left,
-        .top-bar-right {
-          width: 100%;
-          justify-content: flex-start;
+        .tab-content,
+        .preview-frame,
+        .code-editor {
+          min-height: 200px;
+          height: auto;
+          max-height: unset;
+          display: block !important;
         }
       }
       @media (max-width: 480px) {
-        .main-content {
-          height: auto;
-          min-height: unset;
+        .top-toolbar {
+          gap: 0.3rem;
+          padding: 0.3rem 0.1rem 0.3rem 0.3rem;
         }
-        .app-container {
-          height: auto;
-          min-height: unset;
+        .top-toolbar .logo {
+          font-size: 1rem;
+        }
+        .top-toolbar .model-option {
+          font-size: 0.8rem;
+        }
+        .top-toolbar .nav-item {
+          font-size: 0.85rem;
+        }
+        .top-bar {
+          padding: 0.3rem 0.1rem 0.3rem 0.3rem;
         }
         .content-area {
           padding: 0.1rem;
           gap: 0.25rem;
-          height: auto;
-          min-height: unset;
-        }
-        .input-panel,
-        .output-panel {
-          width: 100%;
-          min-width: unset;
-          max-width: unset;
-          height: auto;
-          min-height: unset;
-        }
-        .top-bar {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.15rem;
-          width: 100%;
-          padding: 0.25rem 0.1rem;
-        }
-        .top-bar-left,
-        .top-bar-right {
-          width: 100%;
-          justify-content: flex-start;
         }
       }
 
-      /* Sidebar toggle button */
-      .sidebar-toggle-btn {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 2001;
-        background: var(--primary);
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        width: 44px;
-        height: 44px;
-        font-size: 1.7rem;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-
-      /* Modern gradient background for main content */
-      .main-content {
-        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-      }
       /* Feedback modal styles */
       .modal-feedback {
         display: none;
@@ -1044,9 +1024,6 @@
     </style>
   </head>
   <body class="dark">
-    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
-      <i class="fas fa-bars"></i>
-    </button>
     <!-- Animated Background -->
     <div class="animated-bg">
       <div class="cloud"></div>
@@ -1054,6 +1031,54 @@
       <div class="cloud"></div>
       <div class="cloud"></div>
     </div>
+
+    <!-- Mobile Top Toolbar (hidden on desktop) -->
+    <nav class="top-toolbar" id="topToolbar">
+      <div class="logo">
+        <img
+          src="profile3.jpg"
+          alt="Profile"
+          id="profilePicToolbar"
+          style="
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            margin-right: 0.4rem;
+          "
+        />
+        Nexhil AI
+      </div>
+      <div class="model-selector">
+        <h3 style="margin-bottom: 0.3rem; font-size: 0.8rem">AI Model</h3>
+        <div class="model-options">
+          <div class="model-option active" data-model="gpt">
+            <div class="model-icon gpt">GPT</div>
+          </div>
+          <div class="model-option" data-model="claude">
+            <div class="model-icon claude">C</div>
+          </div>
+          <div class="model-option" data-model="gemini">
+            <div class="model-icon gemini">G</div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-section">
+        <a href="#" class="nav-item" id="newProjectBtnToolbar"
+          ><i class="fas fa-plus"></i
+        ></a>
+        <a href="#" class="nav-item" id="recentProjectsBtnToolbar"
+          ><i class="fas fa-history"></i
+        ></a>
+        <a href="#" class="nav-item" id="templatesBtnToolbar"
+          ><i class="fas fa-folder"></i
+        ></a>
+        <a href="#" class="nav-item" id="settingsBtnToolbar"
+          ><i class="fas fa-cog"></i
+        ></a>
+      </div>
+    </nav>
 
     <div class="app-container">
       <!-- Sidebar -->
@@ -1185,12 +1210,16 @@
                   id="promptInput"
                   placeholder="Describe the website you want to create... Be specific about design, functionality, and features."
                 ></textarea>
-                <div class="prompt-actions">
+                <div class="prompt-actions" style="gap: 0.2rem">
                   <button
                     class="voice-btn"
                     id="voiceBtn"
                     title="Voice input"
-                    style="margin-right: 0.5rem"
+                    style="
+                      margin-right: 0;
+                      background: linear-gradient(135deg, #f43f5e, #f59e42);
+                      color: #fff;
+                    "
                   >
                     <i class="fas fa-microphone"></i>
                   </button>
@@ -1216,29 +1245,43 @@
                     accept=".txt,.md,.pdf,.doc,.docx"
                   />
                 </div>
-              </div>
-
-              <div class="file-drop-area" id="fileDropArea">
-                <i
-                  class="fas fa-cloud-upload-alt"
-                  style="font-size: 2rem; opacity: 0.5; margin-bottom: 0.5rem"
-                ></i>
-                <p>Drop files here or click to upload</p>
-                <small style="opacity: 0.7"
-                  >Supports: TXT, MD, PDF, DOC, DOCX</small
+                <label
+                  class="file-drop-area"
+                  id="fileDropArea"
+                  style="display: block; cursor: pointer"
                 >
-              </div>
+                  <input
+                    type="file"
+                    id="fileInputDrop"
+                    multiple
+                    accept=".txt,.md,.pdf,.doc,.docx"
+                    style="display: none"
+                  />
+                  <i
+                    class="fas fa-cloud-upload-alt"
+                    style="font-size: 2rem; opacity: 0.5; margin-bottom: 0.5rem"
+                  ></i>
+                  <p>Drop files here or click to upload</p>
+                  <small style="opacity: 0.7"
+                    >Supports: TXT, MD, PDF, DOC, DOCX</small
+                  >
+                </label>
 
-              <div class="uploaded-files" id="uploadedFiles"></div>
+                <div class="uploaded-files" id="uploadedFiles"></div>
 
-              <div style="margin-top: 2rem">
-                <h3
-                  style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem"
-                >
-                  Recent Projects
-                </h3>
-                <div class="history-section" id="historySection">
-                  <!-- History items will be populated here -->
+                <div style="margin-top: 2rem">
+                  <h3
+                    style="
+                      font-size: 1rem;
+                      font-weight: 600;
+                      margin-bottom: 1rem;
+                    "
+                  >
+                    Recent Projects
+                  </h3>
+                  <div class="history-section" id="historySection">
+                    <!-- History items will be populated here -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -1549,34 +1592,72 @@
 
     <script src="script.js"></script>
     <script>
-      // Sidebar open/close for mobile
-      const sidebar = document.getElementById("sidebar");
-      const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
-      function openSidebar() {
-        sidebar.classList.add("open");
+      // Remove sidebar toggle button for mobile
+      if (window.innerWidth <= 768) {
+        const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+        if (sidebarToggleBtn) sidebarToggleBtn.style.display = "none";
       }
-      function closeSidebar() {
-        sidebar.classList.remove("open");
-      }
-      sidebarToggleBtn.addEventListener("click", function () {
-        if (sidebar.classList.contains("open")) {
-          closeSidebar();
-        } else {
-          openSidebar();
-        }
-      });
-      // Optional: close sidebar when clicking outside (mobile only)
+      // Toolbar modal openers for mobile
+      document
+        .getElementById("settingsBtnToolbar")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("settingsModal").style.display = "flex";
+        });
+      document
+        .getElementById("templatesBtnToolbar")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("templatesModal").style.display = "flex";
+        });
+      // Close modals on click outside for mobile
       document.addEventListener("click", function (e) {
-        if (
-          window.innerWidth <= 768 &&
-          sidebar.classList.contains("open") &&
-          !sidebar.contains(e.target) &&
-          e.target !== sidebarToggleBtn &&
-          !sidebarToggleBtn.contains(e.target)
-        ) {
-          closeSidebar();
+        if (window.innerWidth <= 768) {
+          if (
+            document.getElementById("settingsModal").style.display === "flex" &&
+            e.target.id === "settingsModal"
+          ) {
+            document.getElementById("settingsModal").style.display = "none";
+          }
+          if (
+            document.getElementById("templatesModal").style.display ===
+              "flex" &&
+            e.target.id === "templatesModal"
+          ) {
+            document.getElementById("templatesModal").style.display = "none";
+          }
         }
       });
+      // Make file-drop-area clickable to open file dialog
+      const fileDropArea = document.getElementById("fileDropArea");
+      const fileInputDrop = document.getElementById("fileInputDrop");
+      if (fileDropArea && fileInputDrop) {
+        fileDropArea.addEventListener("click", function (e) {
+          fileInputDrop.click();
+        });
+        fileDropArea.addEventListener("dragover", function (e) {
+          e.preventDefault();
+          fileDropArea.classList.add("dragover");
+        });
+        fileDropArea.addEventListener("dragleave", function (e) {
+          fileDropArea.classList.remove("dragover");
+        });
+        fileDropArea.addEventListener("drop", function (e) {
+          e.preventDefault();
+          fileDropArea.classList.remove("dragover");
+          fileInputDrop.files = e.dataTransfer.files;
+          // You may want to trigger a change event or handle files here
+          fileInputDrop.dispatchEvent(new Event("change"));
+        });
+      }
+      // Force dark mode on initial load
+      (function () {
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+        // If you have a theme toggle, set its icon to moon
+        var themeIcon = document.getElementById("themeIcon");
+        if (themeIcon) themeIcon.className = "fas fa-moon";
+      })();
     </script>
   </body>
 </html>
