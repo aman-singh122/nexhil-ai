@@ -390,8 +390,13 @@ async function generateWebsite() {
   try {
     let sampleCode;
     try {
+      // Automatically select backend URL based on environment
+      const BACKEND_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000"
+          : "https://nexhil-ai.onrender.com";
       // Try backend API call (JSON POST)
-      const response = await fetch("http://localhost:3000/api/generate", {
+      const response = await fetch(`${BACKEND_URL}/api/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
