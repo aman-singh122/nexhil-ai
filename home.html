@@ -749,56 +749,13 @@
           display: block !important;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: 900px), (max-width: 768px) {
         .sidebar,
         .sidebar-toggle-btn {
           display: none !important;
         }
         .top-toolbar {
-          display: flex;
-          flex-direction: row;
-          align-items: stretch;
-          gap: 0.5rem;
-          width: 100vw;
-          overflow-x: auto;
-          background: var(--glass-bg);
-          backdrop-filter: var(--backdrop-blur);
-          border-bottom: 1px solid var(--glass-border);
-          padding: 0.5rem 0.5rem 0.5rem 0.7rem;
-          z-index: 1002;
-          position: sticky;
-          top: 0;
-        }
-        .top-toolbar .logo {
-          flex: 0 0 auto;
-          font-size: 1.1rem;
-          padding-right: 0.5rem;
-          align-items: center;
-        }
-        .top-toolbar .model-selector {
-          flex: 0 0 auto;
-          padding: 0 0.5rem 0 0.5rem;
-          border: none;
-        }
-        .top-toolbar .model-options {
-          flex-direction: row;
-          gap: 0.5rem;
-        }
-        .top-toolbar .model-option {
-          padding: 0.5rem 0.7rem;
-          font-size: 0.9rem;
-        }
-        .top-toolbar .nav-section {
-          flex: 0 0 auto;
-          display: flex;
-          flex-direction: row;
-          gap: 0.5rem;
-          padding: 0;
-        }
-        .top-toolbar .nav-item {
-          margin-bottom: 0;
-          padding: 0.5rem 0.7rem;
-          font-size: 0.95rem;
+          display: flex !important;
         }
         .main-content {
           width: 100vw;
@@ -807,44 +764,19 @@
           display: flex;
           flex-direction: column;
         }
-        .top-bar {
-          order: 2;
-          width: 100vw;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
-          padding: 0.75rem 0.5rem 0.5rem 0.7rem;
-        }
         .content-area {
-          order: 3;
           flex-direction: column;
           gap: 0.75rem;
           padding: 0.5rem;
           width: 100vw;
         }
-        .output-panel {
-          order: 1;
-          width: 100vw;
-          min-width: unset;
-          max-width: unset;
-          height: auto;
-          min-height: unset;
-        }
+        .output-panel,
         .input-panel {
-          order: 2;
           width: 100vw;
           min-width: unset;
           max-width: unset;
           height: auto;
           min-height: unset;
-        }
-        .tab-content,
-        .preview-frame,
-        .code-editor {
-          min-height: 200px;
-          height: auto;
-          max-height: unset;
-          display: block !important;
         }
       }
       @media (max-width: 480px) {
