@@ -700,45 +700,192 @@
 
       /* Responsive Design */
       @media (max-width: 1024px) {
+        .app-container {
+          flex-direction: column;
+          height: auto;
+          min-height: unset;
+        }
+        .main-content {
+          width: 100%;
+          height: auto;
+          min-height: unset;
+        }
         .content-area {
           flex-direction: column;
           gap: 1rem;
+          padding: 1rem;
+          height: auto;
+          min-height: unset;
         }
         .input-panel {
           width: 100%;
           min-width: unset;
+          max-width: unset;
         }
         .output-panel {
           min-height: 0;
         }
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+          width: 100%;
+        }
+        .top-bar-left,
+        .top-bar-right {
+          width: 100%;
+        }
       }
       @media (max-width: 768px) {
         .sidebar {
-          width: 250px;
+          width: 90vw;
+          max-width: 340px;
           transform: translateX(-100%);
           position: fixed;
           z-index: 1000;
           height: 100vh;
+          left: 0;
+          top: 0;
+          background: var(--glass-bg);
+          transition: transform 0.3s ease;
         }
         .sidebar.open {
           transform: translateX(0);
         }
+        .sidebar-toggle-btn {
+          display: block !important;
+        }
         .main-content {
           width: 100%;
-          height: auto; /* Fix: allow content to expand on mobile */
+          height: auto;
+          min-height: unset;
         }
         .app-container {
           flex-direction: column;
-          height: auto; /* Fix: allow content to expand on mobile */
+          height: auto;
           min-height: unset;
         }
         .content-area {
-          padding: 1rem;
+          padding: 0.5rem;
+          flex-direction: column;
+          gap: 0.75rem;
+          height: auto;
+          min-height: unset;
+        }
+        .input-panel,
+        .output-panel {
+          width: 100%;
+          min-width: unset;
+          max-width: unset;
+          height: auto;
+          min-height: unset;
         }
         .top-bar {
-          padding: 1rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+          width: 100%;
+          padding: 0.75rem 0.5rem;
+        }
+        .top-bar-left,
+        .top-bar-right {
+          width: 100%;
+          justify-content: flex-start;
         }
       }
+      @media (max-width: 600px) {
+        .sidebar {
+          width: 100vw;
+          max-width: 100vw;
+        }
+        .main-content {
+          height: auto;
+          min-height: unset;
+        }
+        .content-area {
+          padding: 0.25rem;
+          gap: 0.5rem;
+          height: auto;
+          min-height: unset;
+        }
+        .input-panel,
+        .output-panel {
+          width: 100%;
+          min-width: unset;
+          max-width: unset;
+          height: auto;
+          min-height: unset;
+        }
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          width: 100%;
+          padding: 0.5rem 0.25rem;
+        }
+        .top-bar-left,
+        .top-bar-right {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+      @media (max-width: 480px) {
+        .main-content {
+          height: auto;
+          min-height: unset;
+        }
+        .app-container {
+          height: auto;
+          min-height: unset;
+        }
+        .content-area {
+          padding: 0.1rem;
+          gap: 0.25rem;
+          height: auto;
+          min-height: unset;
+        }
+        .input-panel,
+        .output-panel {
+          width: 100%;
+          min-width: unset;
+          max-width: unset;
+          height: auto;
+          min-height: unset;
+        }
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.15rem;
+          width: 100%;
+          padding: 0.25rem 0.1rem;
+        }
+        .top-bar-left,
+        .top-bar-right {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+
+      /* Sidebar toggle button */
+      .sidebar-toggle-btn {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 2001;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.7rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
       /* Modern gradient background for main content */
       .main-content {
         background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
@@ -897,6 +1044,9 @@
     </style>
   </head>
   <body class="dark">
+    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
+      <i class="fas fa-bars"></i>
+    </button>
     <!-- Animated Background -->
     <div class="animated-bg">
       <div class="cloud"></div>
@@ -1398,5 +1548,35 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+      // Sidebar open/close for mobile
+      const sidebar = document.getElementById("sidebar");
+      const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+      function openSidebar() {
+        sidebar.classList.add("open");
+      }
+      function closeSidebar() {
+        sidebar.classList.remove("open");
+      }
+      sidebarToggleBtn.addEventListener("click", function () {
+        if (sidebar.classList.contains("open")) {
+          closeSidebar();
+        } else {
+          openSidebar();
+        }
+      });
+      // Optional: close sidebar when clicking outside (mobile only)
+      document.addEventListener("click", function (e) {
+        if (
+          window.innerWidth <= 768 &&
+          sidebar.classList.contains("open") &&
+          !sidebar.contains(e.target) &&
+          e.target !== sidebarToggleBtn &&
+          !sidebarToggleBtn.contains(e.target)
+        ) {
+          closeSidebar();
+        }
+      });
+    </script>
   </body>
 </html>
