@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nexhil AI - AI Website Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
       * {
         box-sizing: border-box;
       }
       body {
         margin: 0;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
         color: #e2e8f0;
         transition: opacity 0.7s ease-in-out;
@@ -33,7 +39,8 @@
         justify-content: center;
         flex-wrap: wrap;
       }
-      .left-pane, .right-pane {
+      .left-pane,
+      .right-pane {
         flex: 1;
         max-width: 500px;
         display: flex;
@@ -50,7 +57,7 @@
         box-shadow: 0 0 20px #00e0ff80;
       }
       .hero-title {
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         font-size: 3.5rem;
         font-weight: 700;
         background: linear-gradient(90deg, #00e0ff, #a78bfa);
@@ -145,7 +152,8 @@
         .hero-title {
           font-size: 2rem;
         }
-        .hero-desc, .info-box {
+        .hero-desc,
+        .info-box {
           font-size: 0.95rem;
         }
         .cta-btn {
@@ -165,17 +173,24 @@
           your idea and we build it for you. No code needed!
         </div>
         <button class="cta-btn" id="tryNowBtn">
-          <i class="fas fa-rocket"></i> Start Generating
+          <i class="fas fa-rocket"></i> Start Generating - Click Here
         </button>
       </div>
       <div class="right-pane">
         <div class="info-box">
           <h2>What Nexhil AI Can Do</h2>
-          <p>Nexhil AI turns your ideas into full websites with clean HTML, CSS, and JS. No setup. No coding. Just pure creativity + AI magic.</p>
+          <p>
+            Nexhil AI turns your ideas into full websites with clean HTML, CSS,
+            and JS. No setup. No coding. Just pure creativity + AI magic.
+          </p>
         </div>
         <div class="info-box">
           <h2>Why Choose Nexhil?</h2>
-          <p>Quick, modern, and responsive web design built instantly from your prompts. Save time, impress users, and export your site in one click.</p>
+          <p>
+            Quick, modern, and responsive web design built instantly from your
+            prompts. Save time, impress users, and export your site in one
+            click.
+          </p>
         </div>
         <div class="info-box stats-boxes">
           <div class="stat-box">
@@ -201,13 +216,15 @@
       &copy; 2025 Nexhil AI — Developed by Aman Singh (Nikhil)
     </div>
     <script>
-      document.getElementById("tryNowBtn").addEventListener("click", function (e) {
-        e.preventDefault();
-        document.body.classList.add("fade-out");
-        setTimeout(function () {
-          window.location.href = "index.html";
-        }, 650);
-      });
+      document
+        .getElementById("tryNowBtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(function () {
+            window.location.href = "home.html";
+          }, 650);
+        });
     </script>
   </body>
 </html>
