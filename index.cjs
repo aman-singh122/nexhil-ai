@@ -23,10 +23,18 @@ const PORT = process.env.PORT || 3000;
 
 // Serve static files in production (for Vercel/Render or local build)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "public")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
-  });
+  // Only serve static files if the 'public' folder exists
+  const publicDir = path.join(__dirname, "public");
+  if (fs.existsSync(publicDir)) {
+    app.use(express.static(publicDir));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(publicDir, "index.html"));
+    });
+  } else {
+    console.warn(
+      "[WARNING] 'public' folder not found. Static file serving is disabled."
+    );
+  }
 }
 
 // Middleware
