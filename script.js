@@ -1657,6 +1657,7 @@ function initFirebaseAuth() {
       });
     };
   }
+  
   // Show/hide buttons based on auth state
   auth.onAuthStateChanged(function (user) {
     if (user && user.email) {

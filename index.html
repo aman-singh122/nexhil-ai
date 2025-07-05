@@ -1522,7 +1522,7 @@ a.btn {
     <section class="smartgenie-section">
   <div class="container smartgenie-content">
     <h2 class="smartgenie-title">✨ Being smart with <span class="highlight">Nexhil</span></h2>
-    <!-- <p class="smartgenie-subtitle">Build stunning websites in minutes with AI.</p> -->
+    <p class="smartgenie-subtitle">Build stunning websites in minutes with AI.</p>
     
     <div class="scroll-wrapper">
       <div class="scroll-track">
@@ -1587,7 +1587,7 @@ a.btn {
   <i class="fa fa-puzzle-piece"></i>
   <h3>Add widgets</h3>
   <p>Insert forms, testimonials, booking, and more with a click.</p>
-  <a href="widgets.html" class="btn cta-btn">
+  <a href="https://wisernotify.com/" class="btn cta-btn">
     Add Widget
   </a>
 </div>
@@ -1596,9 +1596,10 @@ a.btn {
           <i class="fa fa-headset"></i>
           <h3>Get suggestions</h3>
           <p>Learn With AI , get personalized tips and tricks.</p>
-          <button class="btn cta-btn" onclick="openSupportChat()">
-            Chat Now
-          </button>
+          <a href="https://rohitnegi-chatbot.vercel.app/" target="_blank" class="btn cta-btn">
+  Chat Now
+</a>
+
         </div>
       </div>
     </section>
@@ -1636,8 +1637,8 @@ a.btn {
         <div class="or-divider">OR</div>
 
         <p>
-          <a href="#" class="free-subdomain-link" onclick="claimSubdomain()"
-            >Claim a free <b>.Nexhil.site</b> subdomain</a
+       <a href="#" onclick="event.preventDefault(); claimSubdomain()">Claim a free <b>.webgenie.site</b> subdomain</a>
+            >Claim a free <b>.webgenie.site</b> subdomain</a
           >
         </p>
 
@@ -2027,6 +2028,25 @@ a.btn {
       window.location.href = 'home.html';
     }, 700); // match this with CSS animation duration
   });
+   
+      function openDomainModal() {
+        document.getElementById("domainModal").style.display = "flex";
+      }
+      function closeDomainModal() {
+        document.getElementById("domainModal").style.display = "none";
+      }
+      // Optional: Close modal on ESC key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeDomainModal();
+      });
+      // Optional: Close modal when clicking outside modal-content
+      document
+        .getElementById("domainModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeDomainModal();
+        });
+
+    
 </script>
 
 
