@@ -444,10 +444,11 @@ function switchTab(tab) {
     .querySelectorAll(".tab")
     .forEach((t) => t.classList.remove("active"));
   document.querySelector(`.tab[data-tab='${tab}']`).classList.add("active");
-  previewFrame.style.display = tab === "preview" ? "block" : "none";
-  htmlEditor.style.display = tab === "html" ? "block" : "none";
-  cssEditor.style.display = tab === "css" ? "block" : "none";
-  jsEditor.style.display = tab === "js" ? "block" : "none";
+  // Use .hidden class instead of display:none to avoid layout collapse
+  previewFrame.classList.toggle("hidden", tab !== "preview");
+  htmlEditor.classList.toggle("hidden", tab !== "html");
+  cssEditor.classList.toggle("hidden", tab !== "css");
+  jsEditor.classList.toggle("hidden", tab !== "js");
 }
 
 // --- Animated Code Reveal (Claude AI style) ---
@@ -475,10 +476,10 @@ window.switchTab = function (tab) {
     .querySelectorAll(".tab")
     .forEach((t) => t.classList.remove("active"));
   document.querySelector(`.tab[data-tab='${tab}']`).classList.add("active");
-  previewFrame.style.display = tab === "preview" ? "block" : "none";
-  htmlEditor.style.display = tab === "html" ? "block" : "none";
-  cssEditor.style.display = tab === "css" ? "block" : "none";
-  jsEditor.style.display = tab === "js" ? "block" : "none";
+  previewFrame.classList.toggle("hidden", tab !== "preview");
+  htmlEditor.classList.toggle("hidden", tab !== "html");
+  cssEditor.classList.toggle("hidden", tab !== "css");
+  jsEditor.classList.toggle("hidden", tab !== "js");
   if (tab === "html")
     animateCodeReveal(
       "htmlEditor",

@@ -629,6 +629,16 @@
         transition: background 0.3s, color 0.3s;
       }
 
+      /* Utility hidden class for tab content */
+      .hidden {
+        visibility: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+        height: 0 !important;
+        width: 0 !important;
+        pointer-events: none !important;
+      }
+
       /* Loading Animation */
       .loading-overlay {
         position: absolute;
@@ -774,6 +784,22 @@
           height: auto;
           min-height: unset;
         }
+        .tab-content,
+        .preview-frame,
+        .code-editor {
+          min-height: 200px !important;
+          height: auto !important;
+          max-height: unset !important;
+          display: block !important;
+          width: 100% !important;
+        }
+        .preview-frame {
+          min-height: 300px !important;
+          height: 300px !important;
+          display: block !important;
+          width: 100% !important;
+          background: #fff;
+        }
       }
       @media (max-width: 900px), (max-width: 768px) {
         .sidebar,
@@ -803,6 +829,22 @@
           max-width: unset;
           height: auto;
           min-height: unset;
+        }
+        .tab-content,
+        .preview-frame,
+        .code-editor {
+          min-height: 200px !important;
+          height: auto !important;
+          max-height: unset !important;
+          display: block !important;
+          width: 100% !important;
+        }
+        .preview-frame {
+          min-height: 300px !important;
+          height: 300px !important;
+          display: block !important;
+          width: 100% !important;
+          background: #fff;
         }
       }
       @media (max-width: 480px) {
@@ -978,6 +1020,50 @@
         align-items: stretch;
         max-height: 80vh;
         overflow-y: auto;
+      }
+
+      /* --- Mobile/Tablet: Stack panels vertically, Preview below input --- */
+      @media (max-width: 1024px) {
+        .content-area {
+          flex-direction: column !important;
+        }
+        .input-panel {
+          order: 1;
+        }
+        .output-panel {
+          order: 2;
+          width: 100vw !important;
+          min-width: unset !important;
+          max-width: unset !important;
+        }
+        .panel-content {
+          flex-direction: column !important;
+        }
+        .tab-content {
+          flex-direction: column !important;
+        }
+        .preview-frame {
+          order: 4 !important;
+          min-height: 220px !important;
+          height: 220px !important;
+          display: block !important;
+          width: 100% !important;
+          background: #fff;
+          margin-top: 1.5rem !important;
+        }
+        .code-editor {
+          order: 2;
+        }
+      }
+      @media (max-width: 600px) {
+        .output-panel,
+        .input-panel {
+          width: 100vw !important;
+        }
+        .preview-frame {
+          min-height: 180px !important;
+          height: 180px !important;
+        }
       }
     </style>
   </head>
@@ -1586,12 +1672,25 @@
           }
         }
       });
-      // Make file-drop-area clickable to open file dialog
+      // Fix: Prevent file input from reopening multiple times
       const fileDropArea = document.getElementById("fileDropArea");
       const fileInputDrop = document.getElementById("fileInputDrop");
       if (fileDropArea && fileInputDrop) {
+        let fileDialogOpen = false;
         fileDropArea.addEventListener("click", function (e) {
-          fileInputDrop.click();
+          if (!fileDialogOpen) {
+            fileDialogOpen = true;
+            fileInputDrop.value = null; // Reset to allow same file selection
+            fileInputDrop.click();
+          }
+        });
+        fileInputDrop.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+        fileInputDrop.addEventListener("change", function () {
+          setTimeout(() => {
+            fileDialogOpen = false;
+          }, 300);
         });
         fileDropArea.addEventListener("dragover", function (e) {
           e.preventDefault();
@@ -1604,7 +1703,6 @@
           e.preventDefault();
           fileDropArea.classList.remove("dragover");
           fileInputDrop.files = e.dataTransfer.files;
-          // You may want to trigger a change event or handle files here
           fileInputDrop.dispatchEvent(new Event("change"));
         });
       }
