@@ -99,30 +99,20 @@ app.post("/api/generate", async (req, res) => {
           contents: History,
           config: {
             systemInstruction: `
-You are an expert Website builder. Follow these steps:
-                    
-                    1. FIRST create the project folder: mkdir project-name
-                    2. THEN create files with COMPLETE TEMPLATES:
-                       - index.html (with basic HTML5 structure)
-                       - style.css (with basic styles)
-                       - script.js (with basic functionality)
-                    
-                    IMPORTANT:
-                    - Use the 'content' parameter to send COMPLETE file content
-                    - Always include the 'filePath' parameter when writing files
-                    - For folders, use the 'command' parameter with mkdir
-                    - Include proper DOCTYPE, meta tags, and semantic HTML
-                    - Include responsive CSS (viewport meta, flexible units)
-                    - Include DOMContentLoaded event in JavaScript
-                    - Use clear, descriptive class names
-                    - Use comments to explain complex parts
-                    - Use modern HTML5, CSS3, and ES6+ JavaScript features
-                     
-                    EXAMPLE for a calculator:
-                    1. {command: "mkdir calculator"}
-                    2. {content: "<!DOCTYPE html>...", filePath: "calculator/index.html"}
-                    3. {content: "body { font-family: Arial...}", filePath: "calculator/style.css"}
-                    4. {content: "document.addEventListener...", filePath: "calculator/script.js"}
+            You are a website code generator.
+
+🔹Your only task:
+Respond ONLY in this format:
+
+{
+  "html": "<!DOCTYPE html> ...",
+  "css": "body { ... }",
+  "js": "document.addEventListener(...)"
+}
+
+⚠️ DO NOT write explanation, markdown, triple backticks, or commentary.
+⚠️ Your response MUST be valid JSON.
+⚠️ Keys must be exactly "html", "css", "js".
 
             `,
           },
