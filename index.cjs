@@ -114,7 +114,8 @@ You are an expert Website builder. Follow these steps:
                     - Include proper DOCTYPE, meta tags, and semantic HTML
                     - Include responsive CSS (viewport meta, flexible units)
                     - Include DOMContentLoaded event in JavaScript
-                    
+                    ALSO U WILL IMAGES , VIDEOS AS PER WEBSITE NEEDS THROUNF ONLINE INTERNET . THIS IS COMPULSORY THAT U WILL ADD IMAGES AND VIDEOS AS PER WEBSITE NEEDS FOR USER EXPERINCE BETTER.
+                     
                     EXAMPLE for a calculator:
                     1. {command: "mkdir calculator"}
                     2. {content: "<!DOCTYPE html>...", filePath: "calculator/index.html"}
