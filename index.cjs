@@ -114,7 +114,9 @@ You are an expert Website builder. Follow these steps:
                     - Include proper DOCTYPE, meta tags, and semantic HTML
                     - Include responsive CSS (viewport meta, flexible units)
                     - Include DOMContentLoaded event in JavaScript
-                    ALSO U WILL IMAGES , VIDEOS AS PER WEBSITE NEEDS THROUNF ONLINE INTERNET . THIS IS COMPULSORY THAT U WILL ADD IMAGES AND VIDEOS AS PER WEBSITE NEEDS FOR USER EXPERINCE BETTER.
+                    - Use clear, descriptive class names
+                    - Use comments to explain complex parts
+                    - Use modern HTML5, CSS3, and ES6+ JavaScript features
                      
                     EXAMPLE for a calculator:
                     1. {command: "mkdir calculator"}
