@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebGenie - Demo Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffcc70;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .demo-card {
+      background: #1b1b1b;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      box-shadow: 0 6px 24px rgba(255, 204, 112, 0.1);
+    }
+
+    .demo-card:hover {
+      transform: scale(1.03);
+    }
+
+    .demo-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .demo-card h3 {
+      padding: 1rem;
+      font-size: 1.2rem;
+      color: #ffcc70;
+    }
+
+    .demo-card p {
+      padding: 0 1rem;
+      color: #aaa;
+    }
+
+    .demo-card a {
+      display: block;
+      text-align: center;
+      margin: 1rem;
+      padding: 0.6rem 1rem;
+      background: #ffcc70;
+      color: #111;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .demo-card a:hover {
+      background: #e6b94f;
+    }
+
+    .built-count {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-top: 4rem;
+      color: #ffcc70;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #777;
+    }
+.back-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: #ffcc70;
+  color: #111;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(255, 204, 112, 0.2);
+  transition: background 0.3s ease;
+  z-index: 999;
+}
+
+.back-btn:hover {
+  background: #e6b94f;
+}
+
+
+  </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <header>
+    <h1>🎨 Explore Our Demo Websites</h1>
+    <p>These sites were generated using WebGenie's smart builder. Click to view live demos.</p>
+  </header>
+
+  <section class="demo-grid">
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Travel Blog">
+      <h3>Travel Blog</h3>
+      <p>Beautiful layout for travel journaling with image logs.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800&q=80" alt="Yoga Studio">
+      <h3>Yoga Studio</h3>
+      <p>Promote classes, timetables, and booking info.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Interior Design">
+      <h3>Interior Design</h3>
+      <p>Showcase portfolio, testimonials, and booking forms.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Developer Portfolio">
+      <h3>Developer Portfolio</h3>
+      <p>Minimalist resume and project showcase site.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Wedding Planner">
+      <h3>Wedding Planner</h3>
+      <p>Event planning site with packages and photo gallery.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="E-Commerce">
+      <h3>E-Commerce Template</h3>
+      <p>Product listings, cart, and secure checkout page.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80" alt="Bookstore">
+      <h3>Online Bookstore</h3>
+      <p>Catalog layout with filters and purchase CTA.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.XMn0HHAVI5i7SwxNwOaYrgHaJr?rs=1&pid=ImgDetMain&o=7&rm=3" alt="News Magazine">
+      <h3>News Magazine</h3>
+      <p>Dynamic layout for articles, categories, and authors.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Charity Site">
+      <h3>Charity Site</h3>
+      <p>Donation-driven website with success stories.</p>
+      <a href="#">View Demo</a>
+    </div>
+
+    <div class="demo-card">
+      <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Band Website">
+      <h3>Band Website</h3>
+      <p>Promote albums, gigs, and sell merch online.</p>
+      <a href="#">View Demo</a>
+    </div>
+  </section>
+
+  <div class="built-count">Over <span style="color:#fff">500+</span> unique websites built using Nexhil!</div>
+
+  <footer>
+    <p>Built by WebGenie | Demos © 2025</p>
+  </footer>
+</body>
+
+</html>

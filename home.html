@@ -1672,40 +1672,7 @@
           }
         }
       });
-      // Fix: Prevent file input from reopening multiple times
-      const fileDropArea = document.getElementById("fileDropArea");
-      const fileInputDrop = document.getElementById("fileInputDrop");
-      if (fileDropArea && fileInputDrop) {
-        let fileDialogOpen = false;
-        fileDropArea.addEventListener("click", function (e) {
-          if (!fileDialogOpen) {
-            fileDialogOpen = true;
-            fileInputDrop.value = null; // Reset to allow same file selection
-            fileInputDrop.click();
-          }
-        });
-        fileInputDrop.addEventListener("click", function (e) {
-          e.stopPropagation();
-        });
-        fileInputDrop.addEventListener("change", function () {
-          setTimeout(() => {
-            fileDialogOpen = false;
-          }, 300);
-        });
-        fileDropArea.addEventListener("dragover", function (e) {
-          e.preventDefault();
-          fileDropArea.classList.add("dragover");
-        });
-        fileDropArea.addEventListener("dragleave", function (e) {
-          fileDropArea.classList.remove("dragover");
-        });
-        fileDropArea.addEventListener("drop", function (e) {
-          e.preventDefault();
-          fileDropArea.classList.remove("dragover");
-          fileInputDrop.files = e.dataTransfer.files;
-          fileInputDrop.dispatchEvent(new Event("change"));
-        });
-      }
+      
       // Force dark mode on initial load
       (function () {
         document.body.classList.add("dark");

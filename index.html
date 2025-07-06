@@ -54,20 +54,20 @@ body {
 /* Navbar */
 /* Navbar */
 .navbar {
-  background: var(--white);
-  box-shadow: var(--shadow);
+  background: linear-gradient(to right, #f1f3f5, #e4e8ee); /* soft white-blue gradient */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* subtle shadow */
+  padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 100%;
-  min-height: 4.5rem; /* Increased height */
 }
+
 
 .container.nav-flex {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  height: 4.5rem; /* Match navbar height */
+  height: 4.1rem; /* Match navbar height */
 }
 
 .nav-flex {
@@ -234,8 +234,8 @@ body {
 .hero-cta {
   font-size: 1.2rem;
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #f43f5e, #f59e42);
-  color: white;
+  background: linear-gradient(135deg, #f43f5e, #9f784c);
+  color: rgb(229, 161, 161);
   border: none;
   border-radius: 0.75rem;
   text-decoration: none;
@@ -300,7 +300,7 @@ body {
 }
 
 .accent {
-  color: #f59e42;
+  color: #ef9c43;
 }
 /* Smooth Slide-Out Animation */
 /* Slide-Out Animation */
@@ -339,128 +339,242 @@ body {
 
 
 /* Benefits Section */
+
 .benefits-section {
-  background: var(--white);
-  padding: 4rem 0;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* Dark gradient */
+  padding: 5rem 2rem;
+  color: white;
 }
+
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
 }
+
 .benefit-card {
-  background: var(--light-gray);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: 1.2rem;
-  box-shadow: var(--shadow);
-  padding: 2rem 1.5rem;
+  padding: 2rem;
   text-align: center;
-  color: var(--text-main);
-  transition: var(--transition);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.benefit-card i {
-  font-size: 2.2rem;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-.benefit-card h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.7rem;
-}
+
 .benefit-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(79, 140, 255, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 204, 112, 0.4);
 }
+
+.benefit-card i {
+  font-size: 2.6rem;
+  color: #ffcc70;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #ffcc70;
+}
+
+.benefit-card p {
+  font-size: 1rem;
+  color: #dddddd;
+  margin-bottom: 1.2rem;
+}
+.hero-cta.btn.cta-btn {
+  font-size: 2rem !important;
+  padding: 2rem 3rem !important;
+  background: linear-gradient(135deg, #f43f5e, #9f784c) !important;
+  color: white !important;
+}
+
+
+.btn.cta-btn {
+  display: inline-block;
+  background-color: #ffcc70;
+  color: #111;
+  border: none;
+  padding: 2rem 3rem;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 204, 112, 0.2);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn.cta-btn:hover {
+  background-color: #e6b94f;
+  box-shadow: 0 6px 14px rgba(255, 204, 112, 0.25);
+}
+
+/* 🌌 Features Section Background */
+.features-section {
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  padding: 5rem 2rem;
+  color: white;
+}
+
+/* 📦 Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+}
+
+/* 🧊 Glassmorphic Card Style */
+.feature-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 🧲 Hover Glow Effect */
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(94, 185, 255, 0.3);
+}
+
+/* 🎯 Icon Styling */
+.feature-card i {
+  font-size: 2.6rem;
+  color: #60a5fa;
+  margin-bottom: 1rem;
+}
+
+/* 🧠 Heading & Paragraphs */
+.feature-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #ffffff;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #dddddd;
+  margin-bottom: 1.2rem;
+}
+
 
 /* How it Works Section */
-.howitworks-section {
-  background: var(--cream-bg);
-  padding: 4rem 0;
-}
-.section-title {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-}
-.step {
-  background: var(--white);
-  border-radius: 1.2rem;
-  box-shadow: var(--shadow);
-  padding: 2rem 1.5rem;
-  text-align: center;
-  color: var(--text-main);
-  transition: var(--transition);
-  min-width: 180px;
-}
-.step-number {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.2rem;
-  border-radius: 50%;
-  width: 2.2rem;
-  height: 2.2rem;
-  line-height: 2.2rem;
-  margin-bottom: 0.7rem;
-}
-.step h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.step:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(79, 140, 255, 0.1);
+  .howitworks-section {
+      background: #0e0e0e;
+      padding: 4rem 2rem;
+    }
+
+    .howitworks-section .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      color: #ffcc70;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .step {
+      background: #1b1b1b;
+      border-radius: 1.2rem;
+      box-shadow: 0 6px 24px rgba(255, 204, 112, 0.1);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: #ffcc70;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      width: 2.4rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .step h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ffcc70;
+    }
+
+    .step p {
+      color: #ccc;
+    }
+
+    .step:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(255, 204, 112, 0.2);
+    }
+/* Features Section */
+ .features-section {
+  background: #0e0e0e;
+  padding: 4rem 2rem;
 }
 
-/* Features Section */
-.features-section {
-  background: var(--white);
-  padding: 4rem 0;
-}
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
 }
 
-a.btn {
-  text-decoration: none;     /* Removes underline */
-  display: inline-block;     /* Removes extra line height */
-  margin: 0;                 /* Resets unwanted margin */
-  line-height: 1;            /* Makes height neat */
-}
 .feature-card {
-  background: var(--light-gray);
+  background: #1b1b1b;
   border-radius: 1.2rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 6px 24px rgba(255, 204, 112, 0.1);
   padding: 2rem 1.5rem;
   text-align: center;
-  color: var(--text-main);
-  transition: var(--transition);
+  color: #fff;
+  transition: transform 0.3s ease;
 }
+
 .feature-card i {
   font-size: 2.2rem;
-  color: var(--accent);
+  color: #ffcc70;
   margin-bottom: 1rem;
 }
+
 .feature-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
+  color: #ffcc70;
 }
+
+.feature-card p {
+  color: #ccc;
+}
+
 .feature-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(79, 140, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 204, 112, 0.2);
 }
+
 
 /* Integrations Section */
 .integrations-section {
@@ -506,21 +620,22 @@ a.btn {
 
 /* Why Choose Us Section */
 .whychoose-section {
-  background: var(--white);
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   padding: 5rem 1rem;
   text-align: center;
+  color: #fff;
 }
 
 .whychoose-heading {
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.7rem;
-  color: #111;
+  color: #ffcc70;
 }
 
 .whychoose-subtitle {
   font-size: 1.1rem;
-  color: #333;
+  color: #ccc;
   max-width: 600px;
   margin: 0 auto 3rem;
   line-height: 1.6;
@@ -534,37 +649,41 @@ a.btn {
 }
 
 .why-box {
-  background: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
   padding: 2rem 1.5rem;
   border-radius: 1.2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 25px rgba(255, 204, 112, 0.05);
   flex: 1 1 220px;
   max-width: 240px;
   animation: fadeUp 0.6s ease forwards;
   opacity: 0;
   transform: translateY(30px);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .why-box:hover {
   transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(255, 204, 112, 0.2);
 }
 
 .why-box img {
   width: 48px;
   margin-bottom: 1rem;
+  border-radius: 10px;
 }
 
 .why-box h3 {
   font-size: 2rem;
   font-weight: 800;
-  color: #111;
+  color: #ffffff;
   margin-bottom: 0.4rem;
 }
 
 .why-box p {
   font-size: 1rem;
-  color: #111;
+  color: #dddddd;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -593,42 +712,75 @@ a.btn {
 }
 
 
+
 /* Testimonials Section */
+/* 🌌 Background & Section Style */
 .testimonials-section {
-  background: var(--cream-bg);
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   padding: 4rem 0;
+  color: white;
+  overflow: hidden;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+/* 💬 Testimonial Scroll Wrapper */
+.testimonial-scroll-wrapper {
+  position: relative;
+}
+
+/* 📦 Horizontal Scroll Row */
+.scrollable-row {
+  display: flex;
+  overflow-x: auto;
   gap: 2rem;
-  margin-top: 2rem;
+  padding: 1rem 0.5rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
+/* 🚫 Hide Scrollbar */
+.scrollable-row::-webkit-scrollbar {
+  display: none;
+}
+.scrollable-row {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 🧱 Testimonial Card Style */
 .testimonial-card {
-  background: var(--white);
+  flex: 0 0 280px;
+  background: #fff;
   border-radius: 1.2rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  color: #000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   padding: 2rem 1.5rem;
   text-align: center;
+  scroll-snap-align: start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .testimonial-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
+/* 👤 Image Style */
 .testimonial-photo {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
-  border: 2px solid var(--accent);
+  border: 2px solid #3b82f6;
 }
 
+/* 💬 Quote Text */
 .testimonial-card blockquote {
   font-size: 1.05rem;
   font-style: italic;
@@ -636,13 +788,33 @@ a.btn {
   color: #222;
 }
 
+/* 👤 Name */
 .testimonial-name {
-  color: var(--accent);
+  color: #3b82f6;
   font-weight: 700;
   font-size: 1rem;
 }
 
-/* Animation */
+/* ⬅️➡️ Scroll Buttons Below */
+.scroll-buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.scroll-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  font-size: 1.4rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ✨ Animation */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -656,67 +828,99 @@ a.btn {
   }
 }
 
+
+
 /* Pricing Section */
 .pricing-section {
-  background: var(--white);
-  padding: 4rem 0;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  padding: 5rem 1rem;
+  text-align: center;
+  color: #fff;
 }
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   justify-items: center;
 }
+
 .price-card {
-  background: var(--light-gray);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1.2rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 25px rgba(255, 204, 112, 0.05);
   padding: 2.5rem 2rem;
   text-align: center;
-  color: var(--text-main);
-  transition: var(--transition);
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-width: 220px;
   max-width: 350px;
   position: relative;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .price-card.featured {
-  border: 2px solid var(--accent);
-  box-shadow: 0 8px 32px 0 rgba(79, 140, 255, 0.1);
+  border: 2px solid #ffcc70;
+  box-shadow: 0 0 30px rgba(255, 204, 112, 0.2);
 }
+
 .price-card h3 {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
+  color: #ffcc70;
 }
+
 .price {
   font-size: 2.2rem;
-  color: var(--accent);
+  color: #ffffff;
   font-weight: 800;
   margin-bottom: 1.2rem;
 }
+
 .price span {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #ccc;
   font-weight: 400;
 }
+
 .price-card ul {
   list-style: none;
   padding: 0;
   margin: 1.2rem 0 1.5rem 0;
-  color: var(--text-secondary);
+  color: #ddd;
   font-size: 1.05rem;
 }
+
 .price-card li {
   margin-bottom: 0.5rem;
 }
+
 .price-card .cta-btn {
   width: 100%;
   margin: 0 auto;
+  background-color: #ffcc70;
+  color: #111;
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
+
+.price-card .cta-btn:hover {
+  background-color: #e6b94f;
+}
+
 .price-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(79, 140, 255, 0.1);
+  box-shadow: 0 12px 32px rgba(255, 204, 112, 0.15);
 }
+
 
 /* CTA Banner */
 .cta-banner-section {
@@ -1149,7 +1353,7 @@ a.btn {
 
 /* ------------------- Button ------------------- */
 .btn.cta-btn {
-  display: inline-block;
+  display: inline-block;     /* already set, good */
   background-color: #3b82f6;
   color: white;
   border: none;
@@ -1160,10 +1364,17 @@ a.btn {
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
   transition: all 0.2s ease;
-}
-.btn.cta-btn:hover {
-  background-color: #2563eb;
-  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.25);
+
+  /* ✅ fixes for anchor */
+  text-decoration: none;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  /* ✅ NEW: force consistent size */
+  height: auto;
+  width: fit-content;
 }
 
 /* ------------------- Divider ------------------- */
@@ -1312,7 +1523,8 @@ a.btn {
   position: relative;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
-  background: var(--white);
+  background: #fdf6ec; /* soft creamy white */
+  color: #111;    
   padding: 3rem 0 2.5rem 0;
   text-align: center;
   overflow: hidden;
@@ -1491,7 +1703,7 @@ a.btn {
       <div class="container nav-flex">
         <a href="#" class="logo" aria-label="WebGenie Home">Nexhil</a>
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="#features">Features</a>
+          <a href="#benefits">Benefits</a>
           <a href="#howitworks">How it works</a>
           <a href="#pricing">Pricing</a>
           <a href="#testimonials">Testimonials</a>
@@ -1509,7 +1721,7 @@ a.btn {
         </button>
       </div>
       <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-        <a href="#features">Features</a>
+        <a href="#benefits">Benefits</a>
         <a href="#howitworks">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#testimonials">Testimonials</a>
@@ -1522,7 +1734,7 @@ a.btn {
     <section class="smartgenie-section">
   <div class="container smartgenie-content">
     <h2 class="smartgenie-title">✨ Being smart with <span class="highlight">Nexhil</span></h2>
-    <p class="smartgenie-subtitle">Build stunning websites in minutes with AI.</p>
+    <!-- <p class="smartgenie-subtitle">Build stunning websites in minutes with AI.</p> -->
     
     <div class="scroll-wrapper">
       <div class="scroll-track">
@@ -1553,7 +1765,7 @@ a.btn {
       <p class="hero-subtitle">
         Get your business online instantly with the #1 AI website builder.
       </p>
-      <a href="#" class="btn cta-btn hero-cta" id="generateBtn">Start to Generate</a>
+      <a href="./home.html" class="btn cta-btn hero-cta" id="generateBtn">Start to Generate</a>
     </div>
   </div>
 </section>
@@ -1561,48 +1773,36 @@ a.btn {
 
 
     <!-- Benefits Section -->
-    <section class="benefits-section">
-      <div class="container benefits-grid">
-        <div class="benefit-card upload-logo-card">
-          <i class="fa fa-image"></i>
-          <h3>Upload your logo</h3>
-          <p>Brand your site in seconds with your own logo and colors.</p>
-          <label class="btn cta-btn" for="logo-upload">Upload Logo</label>
-          <input
-            type="file"
-            id="logo-upload"
-            style="display: none"
-            accept="image/*"
-          />
-        </div>
-        <div class="benefit-card">
-          <i class="fa fa-globe"></i>
-          <h3>Customize your domain</h3>
-          <p>Connect your own domain or claim a free one with any plan.</p>
-          <button class="btn cta-btn" onclick="openDomainModal()">
-            Set Up Domain
-          </button>
-        </div>
-     <div class="benefit-card">
-  <i class="fa fa-puzzle-piece"></i>
-  <h3>Add widgets</h3>
-  <p>Insert forms, testimonials, booking, and more with a click.</p>
-  <a href="https://wisernotify.com/" class="btn cta-btn">
-    Add Widget
-  </a>
-</div>
+    <!-- Benefits Section -->
+<section class="benefits-section" id="benefits">
+  <div class="container benefits-grid">
 
-        <div class="benefit-card">
-          <i class="fa fa-headset"></i>
-          <h3>Get suggestions</h3>
-          <p>Learn With AI , get personalized tips and tricks.</p>
-          <a href="https://rohitnegi-chatbot.vercel.app/" target="_blank" class="btn cta-btn">
-  Chat Now
-</a>
+    <!-- 🌐 Customize Domain -->
+    <div class="benefit-card">
+      <i class="fa fa-globe"></i>
+      <h3>Customize your domain</h3>
+      <p>Connect your own domain or claim a free one with any plan.</p>
+      <button class="btn cta-btn" onclick="openDomainModal()">Set Up Domain</button>
+    </div>
 
-        </div>
-      </div>
-    </section>
+    <!-- 🎥 Watch Demos -->
+    <div class="benefit-card">
+      <i class="fa fa-play-circle"></i>
+      <h3>Watch Demos</h3>
+      <p>Explore example websites to get ideas and inspiration.</p>
+      <a href="demo.html" target="_blank" class="btn cta-btn">Watch Now</a>
+    </div>
+
+    <!-- 🤖 Get Suggestions -->
+    <div class="benefit-card">
+      <i class="fa fa-headset"></i>
+      <h3>Get suggestions</h3>
+      <p>Learn with AI and get personalized tips and tricks.</p>
+      <a href="https://rohitnegi-chatbot.vercel.app/" target="_blank" class="btn cta-btn">Chat Now</a>
+    </div>
+
+  </div>
+</section>
 
     <!-- Domain Setup Modal -->
     <!-- DOMAIN MODAL -->
@@ -1672,6 +1872,40 @@ a.btn {
         <div class="status-message" id="domainStatus"></div>
       </div>
     </div>
+ <!-- Why Choose Us Section -->
+    <section class="whychoose-section">
+  <div class="container">
+    <h2 class="whychoose-heading">Why choose <span class="accent">Nexhil</span>?</h2>
+    <p class="whychoose-subtitle">Let AI power your journey — build, grow, and scale effortlessly.</p>
+
+    <div class="whychoose-stats-flex">
+      <div class="why-box fade-up">
+        <img src="https://cdn-icons-png.flaticon.com/512/3106/3106891.png" alt="Fast Launch" />
+        <h3>30s</h3>
+        <p>To launch your website</p>
+      </div>
+
+      <div class="why-box fade-up" style="animation-delay: 0.15s">
+      <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=80" alt="Happy Customers" style="border-radius: 1rem;" />
+
+        <h3>4.9/5</h3>
+        <p>Average customer rating</p>
+      </div>
+
+      <div class="why-box fade-up" style="animation-delay: 0.3s">
+        <img src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" alt="Websites Generated" />
+        <h3>10,000+</h3>
+        <p>Websites generated</p>
+      </div>
+
+      <div class="why-box fade-up" style="animation-delay: 0.45s">
+        <img src="https://cdn-icons-png.flaticon.com/512/726/726476.png" alt="Support" />
+        <h3>24/7</h3>
+        <p>Human support team</p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- How it Works Section -->
     <section class="howitworks-section" id="howitworks">
@@ -1700,30 +1934,31 @@ a.btn {
     </section>
 
     <!-- Features Section -->
-    <section class="features-section" id="features">
-      <div class="container features-grid">
-        <div class="feature-card">
-          <i class="fa fa-bolt"></i>
-          <h3>Lightning Fast</h3>
-          <p>Get online in seconds, not days. No waiting, no coding.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fa fa-mobile-alt"></i>
-          <h3>Mobile Ready</h3>
-          <p>Your site looks perfect on every device, automatically.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fa fa-lock"></i>
-          <h3>Secure & Reliable</h3>
-          <p>SSL, backups, and blazing speed included for every site.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fa fa-plug"></i>
-          <h3>Integrations</h3>
-          <p>Connect Google, Calendly, and more in one click.</p>
-        </div>
-      </div>
-    </section>
+   <section class="features-section" id="features">
+  <div class="container features-grid">
+    <div class="feature-card">
+      <i class="fa fa-bolt"></i>
+      <h3>Lightning Fast</h3>
+      <p>Get online in seconds, not days. No waiting, no coding.</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa fa-mobile-alt"></i>
+      <h3>Mobile Ready</h3>
+      <p>Your site looks perfect on every device, automatically.</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa fa-lock"></i>
+      <h3>Secure & Reliable</h3>
+      <p>SSL, backups, and blazing speed included for every site.</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa fa-plug"></i>
+      <h3>Integrations</h3>
+      <p>Connect Google, Calendly, and more in one click.</p>
+    </div>
+  </div>
+</section>
+
 
     <!-- Integrations Section -->
 <!-- Integrations Section -->
@@ -1806,99 +2041,56 @@ a.btn {
 
 
 
-    <!-- Why Choose Us Section -->
-    <section class="whychoose-section">
-  <div class="container">
-    <h2 class="whychoose-heading">Why choose <span class="accent">Nexhil</span>?</h2>
-    <p class="whychoose-subtitle">Let AI power your journey — build, grow, and scale effortlessly.</p>
-
-    <div class="whychoose-stats-flex">
-      <div class="why-box fade-up">
-        <img src="https://cdn-icons-png.flaticon.com/512/3106/3106891.png" alt="Fast Launch" />
-        <h3>30s</h3>
-        <p>To launch your website</p>
-      </div>
-
-      <div class="why-box fade-up" style="animation-delay: 0.15s">
-      <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=80" alt="Happy Customers" style="border-radius: 1rem;" />
-
-        <h3>4.9/5</h3>
-        <p>Average customer rating</p>
-      </div>
-
-      <div class="why-box fade-up" style="animation-delay: 0.3s">
-        <img src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" alt="Websites Generated" />
-        <h3>10,000+</h3>
-        <p>Websites generated</p>
-      </div>
-
-      <div class="why-box fade-up" style="animation-delay: 0.45s">
-        <img src="https://cdn-icons-png.flaticon.com/512/726/726476.png" alt="Support" />
-        <h3>24/7</h3>
-        <p>Human support team</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+   
 
     <!-- Testimonials Section -->
-   <!-- Testimonials Section -->
+<!-- Testimonials Section -->
 <section class="testimonials-section" id="testimonials">
   <div class="container">
     <h2 class="section-title">What our users say</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="Shruti P" class="testimonial-photo" />
-        <blockquote>“Nexhil made it super easy to launch my portfolio site. I love the design!”</blockquote>
-        <span class="testimonial-name">Shruti P, Freelance Developer</span>
+
+    <div class="testimonial-scroll-wrapper">
+      <div class="scrollable-row">
+        <div class="testimonial-card fade-up">
+          <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="Shruti P" class="testimonial-photo" />
+          <blockquote>“Nexhil made it super easy to launch my portfolio site. I love the design!”</blockquote>
+          <span class="testimonial-name">Shruti P, Freelance Developer</span>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Aman R" class="testimonial-photo" />
+          <blockquote>“It’s so fast and beginner-friendly. Took me just minutes to go live.”</blockquote>
+          <span class="testimonial-name">Aman R, Photographer</span>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anjali M" class="testimonial-photo" />
+          <blockquote>“Such a clean interface. Even non-techies can build websites easily.”</blockquote>
+          <span class="testimonial-name">Anjali M, Artist</span>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <img src="https://randomuser.me/api/portraits/men/80.jpg" alt="Rohit S" class="testimonial-photo" />
+          <blockquote>“I’m impressed by the AI suggestions. Saved me hours of thinking!”</blockquote>
+          <span class="testimonial-name">Rohit S, Startup Founder</span>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="Nisha R" class="testimonial-photo" />
+          <blockquote>“Game-changer for small business owners like me. Easy and elegant.”</blockquote>
+          <span class="testimonial-name">Nisha R, Boutique Owner</span>
+        </div>
       </div>
 
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Aman R" class="testimonial-photo" />
-        <blockquote>“It’s so fast and beginner-friendly. Took me just minutes to go live.”</blockquote>
-        <span class="testimonial-name">Aman R, Photographer</span>
-      </div>
-
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anjali M" class="testimonial-photo" />
-        <blockquote>“Such a clean interface. Even non-techies can build websites easily.”</blockquote>
-        <span class="testimonial-name">Anjali M, Artist</span>
-      </div>
-
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/men/80.jpg" alt="Rohit S" class="testimonial-photo" />
-        <blockquote>“I’m impressed by the AI suggestions. Saved me hours of thinking!”</blockquote>
-        <span class="testimonial-name">Rohit S, Startup Founder</span>
-      </div>
-
-      <div class="testimonial-card fade-up">
-  <img src="https://randomuser.me/api/portraits/men/19.jpg" alt="Karan V" class="testimonial-photo" />
-  <blockquote>“Built my personal portfolio in 10 minutes. Super impressed!”</blockquote>
-  <span class="testimonial-name">Karan V, Web Developer</span>
-</div>
-
-<div class="testimonial-card fade-up">
-  <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="Nisha R" class="testimonial-photo" />
-  <blockquote>“Game-changer for small business owners like me. Easy and elegant.”</blockquote>
-  <span class="testimonial-name">Nisha R, Boutique Owner</span>
-</div>
-
-
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Meera T" class="testimonial-photo" />
-        <blockquote>“The whole process felt like magic. Just type and launch!”</blockquote>
-        <span class="testimonial-name">Meera T, Blogger</span>
-      </div>
-
-      <div class="testimonial-card fade-up">
-        <img src="https://randomuser.me/api/portraits/men/23.jpg" alt="Deepak N" class="testimonial-photo" />
-        <blockquote>“Better than any website builder I’ve tried before. Hats off to Nexhil!”</blockquote>
-        <span class="testimonial-name">Deepak N, Business Owner</span>
+      <!-- Scroll Buttons -->
+      <div class="scroll-buttons-wrapper">
+        <button class="scroll-btn left-btn">&lt;</button>
+        <button class="scroll-btn right-btn">&gt;</button>
       </div>
     </div>
   </div>
 </section>
+
 
 
     <!-- Pricing Section -->
@@ -1923,7 +2115,9 @@ a.btn {
             <li>Custom Domain</li>
             <li>Email Support</li>
           </ul>
-          <button class="btn cta-btn">Start Free Trial</button>
+
+          <a href="./home.html" class="btn cta-btn">Start Free Trial</a>
+
         </div>
         <div class="price-card">
           <h3>Enterprise</h3>
@@ -1938,16 +2132,13 @@ a.btn {
       </div>
     </section>
 
-    <footer style="background-color: #111827; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem;">
-  <p style="margin: 0;">&copy; 2025 | Developed by Aman Singh (Nikhil)</p>
-</footer>
-
+   
 
     <!-- Final CTA Banner -->
     <section class="cta-banner-section">
       <div class="container cta-banner-flex">
         <h2>Ready to build your website?</h2>
-          <a href="#hero" class="btn cta-btn nav-cta">Get Started</a>
+          <a href="./home.html" class="btn cta-btn nav-cta">Get Started</a>
       </div>
     </section>
 
@@ -2007,11 +2198,10 @@ a.btn {
       </div>
     </div>
   </div>
+ <footer style="background-color: #111827; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem;">
+  <p style="margin: 0;">&copy; 2025 | Developed by Aman Singh (Nikhil)</p>
 </footer>
 
-
-      
-    </footer>
     <script src="script.js" defer></script>
   <script>
   const generateBtn = document.getElementById('generateBtn');
@@ -2046,7 +2236,17 @@ a.btn {
           if (e.target === this) closeDomainModal();
         });
 
-    
+    const grid = document.querySelector('.scrollable-row');
+  const leftBtn = document.querySelector('.left-btn');
+  const rightBtn = document.querySelector('.right-btn');
+
+  leftBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+
+  rightBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: 320, behavior: 'smooth' });
+  });
 </script>
 
 
