@@ -1681,6 +1681,34 @@
         var themeIcon = document.getElementById("themeIcon");
         if (themeIcon) themeIcon.className = "fas fa-moon";
       })();
+
+        const tabs = document.querySelectorAll('.tab');
+  const htmlEditor = document.getElementById('htmlEditor');
+  const cssEditor = document.getElementById('cssEditor');
+  const jsEditor = document.getElementById('jsEditor');
+  const previewFrame = document.getElementById('previewFrame');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      // Remove active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Hide all sections
+      htmlEditor.style.display = 'none';
+      cssEditor.style.display = 'none';
+      jsEditor.style.display = 'none';
+      previewFrame.style.display = 'none';
+
+      // Show selected one
+      const selected = tab.getAttribute('data-tab');
+      if (selected === 'html') htmlEditor.style.display = 'block';
+      else if (selected === 'css') cssEditor.style.display = 'block';
+      else if (selected === 'js') jsEditor.style.display = 'block';
+      else previewFrame.style.display = 'block';
+    });
+  });
+  
     </script>
   </body>
 </html>
